@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="style.css" />
+    <title>Detective EMS</title>
+</head>
+<body>
+    <div id="death-screen" class="death-screen hidden">
+        <div class="death-panel">
+            <h1 class="death-title" id="death-title">You are incapacitated</h1>
+            <p class="death-subtitle" id="death-subtitle">
+                You are incapacitated. Please wait for doctors, everything will be fine.
+            </p>
+
+            <div class="timer" aria-live="polite">
+                <div class="timer-digit" id="digit-m1">0</div>
+                <div class="timer-digit" id="digit-m2">5</div>
+                <span class="timer-sep">:</span>
+                <div class="timer-digit" id="digit-s1">0</div>
+                <div class="timer-digit" id="digit-s2">0</div>
+            </div>
+
+            <div class="actions">
+                <button type="button" class="btn btn-ems" id="btn-ems">
+                    <span class="btn-label" id="label-ems">Call EMS</span>
+                    <span class="btn-hint hidden" id="ems-cooldown"></span>
+                </button>
+                <button type="button" class="btn btn-respawn disabled" id="btn-respawn" disabled>
+                    <span class="btn-label" id="label-respawn">Respawn</span>
+                    <span class="btn-hint" id="respawn-hint">Wait for timer</span>
+                </button>
+            </div>
+        </div>
+    </div>
+    <script src="app.js"></script>
+</body>
+</html>

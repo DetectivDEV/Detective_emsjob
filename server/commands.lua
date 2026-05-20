@@ -1,0 +1,157 @@
+lib.addCommand(Config.ReviveCommand, {
+    help = locale("revive_player"),
+    params = {
+        {
+            name = 'target',
+            type = 'playerId',
+            help = 'Target player\'s server id',
+            optional = true,
+        },
+    },
+    restricted = Config.AdminGroup
+}, function(source, args, raw)
+    if not args.target then args.target = source end
+
+    local data = {}
+    data.revive = true
+
+    TriggerClientEvent('detective_emsjob:healPlayer', args.target, data)
+
+
+    if source > 0 then
+        TriggerClientEvent("detective_emsjob:showNotification", source, (locale("revived_player")):format(args.target))
+    else
+        print("^4detective_emsjob > ^0", (locale("revived_player")):format(args.target))
+    end
+end)
+
+
+lib.addCommand(Config.ReviveAreaCommand, {
+    help = locale("revive_area"),
+    params = {
+        {
+            name = 'radius',
+            type = 'number',
+            help = 'to revive players in radius',
+            optional = false,
+        },
+    },
+    restricted = Config.AdminGroup
+}, function(source, args, raw)
+    if source <= 0 then return print("^4detective_emsjob > ^0", "You cant run this command from console") end
+
+    local players = GetPlayers()
+
+    local playerPed = GetPlayerPed(source)
+    local playerCoords = GetEntityCoords(playerPed)
+
+    for i = 1, #players do
+        local player = players[i]
+        local ped    = GetPlayerPed(player)
+        local coords = GetEntityCoords(ped)
+        local dist   = #(playerCoords - coords)
+
+        if dist <= args.radius then
+            TriggerClientEvent('detective_emsjob:healPlayer', player, { revive = true })
+        end
+    end
+    TriggerClientEvent("detective_emsjob:showNotification", source, (locale("revived_area")):format(args.radius))
+end)
+
+
+lib.addCommand(Config.HealCommand, {
+    help = locale("heal_player"),
+    params = {
+        {
+            name = 'target',
+            type = 'playerId',
+            help = 'Target player\'s server id',
+            optional = true,
+        },
+    },
+    restricted = Config.AdminGroup
+}, function(source, args, raw)
+    if not args.target then args.target = source end
+
+    local data = {}
+    data.heal = true
+    TriggerClientEvent('detective_emsjob:healPlayer', args.target, data)
+
+    if source > 0 then
+        TriggerClientEvent("detective_emsjob:showNotification", source, (locale("healed_player")):format(args.target))
+    else
+        print("^4detective_emsjob > ^0", (locale("healed_player")):format(args.target))
+    end
+end)
+
+lib.addCommand(Config.HealAreaCommand, {
+    help = locale("heal_area"),
+    params = {
+        {
+            name = 'radius',
+            type = 'number',
+            help = 'to revive players in radius',
+            optional = false,
+        },
+    },
+    restricted = Config.AdminGroup
+}, function(source, args, raw)
+    if source <= 0 then return print("^4detective_emsjob > ^0", "You cant run this command from console") end
+
+    local players = GetPlayers()
+
+    local playerPed = GetPlayerPed(source)
+    local playerCoords = GetEntityCoords(playerPed)
+
+    for i = 1, #players do
+        local player = players[i]
+        local ped    = GetPlayerPed(player)
+        local coords = GetEntityCoords(ped)
+        local dist   = #(coords - playerCoords)
+        if dist <= args.radius then
+            TriggerClientEvent('detective_emsjob:healPlayer', player, { heal = true })
+        end
+    end
+    TriggerClientEvent("detective_emsjob:showNotification", source, (locale("healed_area")):format(args.radius))
+end)
+
+lib.addCommand(Config.ReviveAllCommand, {
+    help = locale("revive_all"),
+    restricted = Config.AdminGroup
+}, function(source, args, raw)
+    local players = GetPlayers()
+
+    for i = 1, #players do
+        local player = players[i]
+        TriggerClientEvent('detective_emsjob:healPlayer', player, { revive = true })
+    end
+
+    if source > 0 then
+        TriggerClientEvent("detective_emsjob:showNotification", source, locale("revived_all"))
+    else
+        print("^4detective_emsjob > ^0", locale("revived_all"))
+    end
+end)
+
+lib.addCommand(Config.KillCommand, {
+    help = locale("kill_player"),
+    params = {
+        {
+            name = 'target',
+            type = 'playerId',
+            help = 'Target player\'s server id',
+            optional = true,
+        },
+    },
+    restricted = Config.AdminGroup
+}, function(source, args, raw)
+    if not args.target then args.target = source end
+
+    TriggerClientEvent('detective_emsjob:adminKill', args.target)
+
+    if source > 0 then
+        TriggerClientEvent("detective_emsjob:showNotification", source, (locale("killed_player")):format(args.target))
+    else
+        print("^4detective_emsjob > ^0", (locale("killed_player")):format(args.target))
+    end
+end)
