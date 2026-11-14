@@ -30,10 +30,10 @@ Config.MedicBagItem            = "medicalbag"
 Config.HelpCommand             = "911"
 Config.RemoveItemsOnRespawn    = true
 
-Config.BaseInjuryReward        = 150 -- changes if the injury value is higher then 1
-Config.ReviveReward            = 700
+Config.BaseInjuryReward        = 200 -- changes if the injury value is higher then 1
+Config.ReviveReward            = 400
 
-Config.ParamedicTreatmentPrice = 4000
+Config.ParamedicTreatmentPrice = 1000
 Config.AllowAlways             = true        -- false if you want it to work only when there are only medics online
 
 Config.AmbulanceStretchers     = 2           -- how many stretchers should an ambunalce have
@@ -70,7 +70,7 @@ Config.Hospitals = {
 	["phillbox"] = {
 		paramedic = {
 			model = "s_m_m_scientist_01",
-			pos = vector4(312.0927, -596.1016, 42.2918, 338.7213),
+			pos = vec4(312.76, -583.36, 42.27, 94.55),
 		},
 		zone = {
 			pos = vec3(299.0, -585.28, 43.28),
@@ -86,23 +86,20 @@ Config.Hospitals = {
 		},
 		respawn = {
 			{
-				bedPoint = vector4(349.76, -583.44, 43.0, 150.04),
-				spawnPoint = vector4(348.84, -583.36, 42.32, 68.24)
+				bedPoint = vec4(343.03, -593.5, 42.94, 65.11),
+				bedPoint = vec4(338.34, -595.38, 42.94, 338.64),
+				spawnPoint = vec4(331.27, -592.84, 42.94, 336.45)
 			},
-			-- {
-			-- 	bedPoint = vector4(346.96, -590.64, 44.12, 338.0),
-			-- 	spawnPoint = vector4(348.84, -583.36, 42.32, 68.24)
-			-- },
 
 		},
 		stash = {
 			['ems_stash_1'] = {
-				slots = 50,
-				weight = 50, -- kg
+				slots = 100,
+				weight = 1000, -- kg
 				min_grade = 0,
 				label = 'Ems stash',
-				shared = true, -- false if you want to make everyone has a personal stash
-				pos = vector3(309.96, -599.2, 43.28)
+				shared = false, -- false if you want to make everyone has a personal stash
+				pos = vec3(319.44, -600.7, 43.26)
 			}
 		},
 		pharmacy = {
@@ -110,14 +107,13 @@ Config.Hospitals = {
 				job = true,
 				label = "Pharmacy",
 				grade = 0, -- works only if job true
-				pos = vector3(315.5516, -598.6013, 43.2918),
+				pos = vec3(297.10, -593.42, 43.36),
 				blip = {
 					enable = false,
 					name = 'Pharmacy',
 					type = 61,
 					scale = 0.7,
 					color = 2,
-					pos = vector3(315.5516, -598.6013, 43.2918),
 				},
 				items = {
 					{ name = 'medicalbag',    price = 10 },
@@ -126,6 +122,7 @@ Config.Hospitals = {
 					{ name = 'tweezers',      price = 10 },
 					{ name = 'burncream',     price = 10 },
 					{ name = 'suturekit',     price = 10 },
+					{ name = 'emstablet',     price = 170 },
 					{ name = 'icepack',       price = 10 },
 				}
 			},
@@ -133,14 +130,14 @@ Config.Hospitals = {
 				job = false,
 				label = "Pharmacy",
 				grade = 0, -- works only if job true
-				pos = vector3(303.84, -597.6, 43.28),
+				pos = vec4(298.01, -597.8, 42.26, 332.01),
+				model = 's_m_m_doctor_01',
 				blip = {
-					enable = true,
+					enable = false,
 					name = 'Pharmacy',
 					type = 61,
 					scale = 0.7,
 					color = 2,
-					pos = vector3(303.84, -597.6, 43.28),
 				},
 				items = {
 					{ name = 'bandage', price = 10 },
@@ -149,86 +146,13 @@ Config.Hospitals = {
 		},
 		clothes = {
 			enable = true,
-			pos = vector4(300.7454, -597.4542, 42.2918, 298.0781),
+			pos = vec4(316.6, -597.71, 42.26, 243.32),
 			model = 'a_f_m_bevhills_01',
-			male = {
-				[1] = {
-					['mask_1']    = 0,
-					['mask_2']    = 0,
-					['arms']      = 0,
-					['tshirt_1']  = 15,
-					['tshirt_2']  = 0,
-					['torso_1']   = 86,
-					['torso_2']   = 0,
-					['bproof_1']  = 0,
-					['bproof_2']  = 0,
-					['decals_1']  = 0,
-					['decals_2']  = 0,
-					['chain_1']   = 0,
-					['chain_2']   = 0,
-					['pants_1']   = 10,
-					['pants_2']   = 2,
-					['shoes_1']   = 56,
-					['shoes_2']   = 0,
-					['helmet_1']  = 34,
-					['helmet_2']  = 0,
-					['glasses_1'] = 34,
-					['glasses_2'] = 1,
-				},
-				[2] = {
-					['mask_1']    = 0,
-					['mask_2']    = 0,
-					['arms']      = 0,
-					['tshirt_1']  = 15,
-					['tshirt_2']  = 0,
-					['torso_1']   = 86,
-					['torso_2']   = 0,
-					['bproof_1']  = 0,
-					['bproof_2']  = 0,
-					['decals_1']  = 0,
-					['decals_2']  = 0,
-					['chain_1']   = 0,
-					['chain_2']   = 0,
-					['pants_1']   = 10,
-					['pants_2']   = 2,
-					['shoes_1']   = 56,
-					['shoes_2']   = 0,
-					['helmet_1']  = 34,
-					['helmet_2']  = 0,
-					['glasses_1'] = 34,
-					['glasses_2'] = 1,
-				},
-			},
-			female = {
-				[1] = {
-					['mask_1']    = 0,
-					['mask_2']    = 0,
-					['arms']      = 0,
-					['tshirt_1']  = 15,
-					['tshirt_2']  = 0,
-					['torso_1']   = 86,
-					['torso_2']   = 0,
-					['bproof_1']  = 0,
-					['bproof_2']  = 0,
-					['decals_1']  = 0,
-					['decals_2']  = 0,
-					['chain_1']   = 0,
-					['chain_2']   = 0,
-					['pants_1']   = 10,
-					['pants_2']   = 2,
-					['shoes_1']   = 56,
-					['shoes_2']   = 0,
-					['helmet_1']  = 34,
-					['helmet_2']  = 0,
-					['glasses_1'] = 34,
-					['glasses_2'] = 1,
-				},
-			},
+			male = {},
+			female = {},
 		},
 	},
 }
-
-
 Config.BodyParts = {
 
 	-- ["0"] = { id = "hip", label = "Damaged Hipbone", levels = { ["default"] = "Damaged", ["10"] = "Damaged x2", ["20"] = "Damaged x3", ["30"] = "Damaged x3", ["40"] = "Damaged x3", ["50"] = "Damaged x3" } },
@@ -271,3 +195,68 @@ function Config.SendDistressCall(msg)
 	--     TriggerServerEvent('gksphone:jbmessage', name, Races[1].phone_number, msg, '', GPS, "ambulance")
 	-- end)
 end
+-- EMS Default Uniform Outfits Config (Bottom of file)
+local defaultMaleOutfit = {
+	['mask_1']    = 0,
+	['mask_2']    = 0,
+	['arms']      = 85,
+	['tshirt_1']  = 122,
+	['tshirt_2']  = 0,
+	['torso_1']   = 250,
+	['torso_2']   = 0,
+	['bproof_1']  = 0,
+	['bproof_2']  = 0,
+	['decals_1']  = 57,
+	['decals_2']  = 0,
+	['chain_1']   = 0,
+	['chain_2']   = 0,
+	['pants_1']   = 96,
+	['pants_2']   = 0,
+	['shoes_1']   = 51,
+	['shoes_2']   = 0,
+	['helmet_1']  = -1,
+	['helmet_2']  = 0,
+	['glasses_1'] = -1,
+	['glasses_2'] = 0,
+}
+
+local defaultFemaleOutfit = {
+	['mask_1']    = 0,
+	['mask_2']    = 0,
+	['arms']      = 95,
+	['tshirt_1']  = 159,
+	['tshirt_2']  = 0,
+	['torso_1']   = 258,
+	['torso_2']   = 0,
+	['bproof_1']  = 0,
+	['bproof_2']  = 0,
+	['decals_1']  = 65,
+	['decals_2']  = 0,
+	['chain_1']   = 0,
+	['chain_2']   = 0,
+	['pants_1']   = 99,
+	['pants_2']   = 0,
+	['shoes_1']   = 52,
+	['shoes_2']   = 0,
+	['helmet_1']  = -1,
+	['helmet_2']  = 0,
+	['glasses_1'] = -1,
+	['glasses_2'] = 0,
+}
+
+Config.Hospitals["phillbox"].clothes.male = {
+	[0] = defaultMaleOutfit,
+	[1] = defaultMaleOutfit,
+	[2] = defaultMaleOutfit,
+	[3] = defaultMaleOutfit,
+	[4] = defaultMaleOutfit,
+}
+
+Config.Hospitals["phillbox"].clothes.female = {
+	[0] = defaultFemaleOutfit,
+	[1] = defaultFemaleOutfit,
+	[2] = defaultFemaleOutfit,
+	[3] = defaultFemaleOutfit,
+	[4] = defaultFemaleOutfit,
+}
+
